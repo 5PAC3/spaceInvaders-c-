@@ -1,2 +1,8 @@
 ﻿  Alieno.cpp
-  sapceInvaders.vcxproj -> R:\Desktop\sapceInvaders\x64\Debug\sapceInvaders.exe
+  ProjectileP.cpp
+  main.cpp
+D:\scuola\project\spaceInvaders\sapceInvaders\immediate2d.h(1365,5): warning C4984: 'if constexpr' è un'estensione del linguaggio C++17
+D:\scuola\project\spaceInvaders\sapceInvaders\immediate2d.h(1366,5): warning C4984: 'if constexpr' è un'estensione del linguaggio C++17
+D:\scuola\project\spaceInvaders\sapceInvaders\immediate2d.h(1367,5): warning C4984: 'if constexpr' è un'estensione del linguaggio C++17
+  Generazione del codice in corso...
+  sapceInvaders.vcxproj -> D:\scuola\project\spaceInvaders\x64\Debug\sapceInvaders.exe

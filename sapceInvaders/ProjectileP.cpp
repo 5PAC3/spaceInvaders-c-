@@ -20,8 +20,11 @@ void ProjectileP::Start(int x, int y)
 
 	for (int i=0 ; i < 155; i++)
 	{
+
+		std::lock_guard<std::mutex> lock(mtx);
+
 		Draw(x, y--, colore);
-		Wait(20);
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
 		Draw(x, a--, Black);
 		Wait(2);
 	}
