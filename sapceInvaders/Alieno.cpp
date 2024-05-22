@@ -102,11 +102,11 @@ void Alieno::Draw(int x, int y, Color colore)
 
 void Alieno::Move() //da sistemare il fatto che va tropppo veloce ( a un certo punto accellera) e che non si ferma dove stabilito
 {
+	std::lock_guard<std::mutex> lock(mtx);
 	int a = x;
 	Draw(x++, y, colore);
-	Wait(2000);
+	std::this_thread::sleep_for(std::chrono::milliseconds(30));
 	Draw(a++, y, Black);
-	Wait(2000);
 
 }
 
