@@ -16,12 +16,15 @@ using namespace std;
 
 void run() {
 	int clock = 0;
+	int firstRowClock = clock;
+	int projectileClock = clock;
 
 	Gioco gioco;
 	Player p;
 	Alieno S(30, 30, 'S');
 	Alieno M(30, 43, 'M');
 	Alieno L(30, 55, 'L');
+
 
 	while (true)
 	{
@@ -35,14 +38,19 @@ void run() {
 		if (key == 'd')
 		{
 			p.MoveR();
-		}else if (key == 'a')
+		}
+		if (key == 'a')
 		{
 			p.MoveL();
 		}
 		if (key == ' ')
 		{
-			thread T(&Player::Shoot, &p);
-			T.detach();
+			if (clock - projectileClock > 50)
+			{
+				thread T(&Player::Shoot, &p);
+				T.detach();
+				projectileClock = clock;
+			}
 		}
 	
 		//S.Draw(30, 30, White);
@@ -51,7 +59,11 @@ void run() {
 
 		if (S.GetX() < 240)
 		{
-			S.Move();
+			if (clock - firstRowClock == 10)
+			{
+				S.Move();
+				firstRowClock = clock;
+			}
 		}
 
 		Wait(20);

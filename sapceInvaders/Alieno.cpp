@@ -100,9 +100,8 @@ void Alieno::Draw(int x, int y, Color colore)
 	}
 }
 
-void Alieno::Move() //da sistemare il fatto che va tropppo veloce ( a un certo punto accellera) e che non si ferma dove stabilito
-{
-	
+void Alieno::Move() 
+{	
 	Draw(x++, y, colore);
 }
 
