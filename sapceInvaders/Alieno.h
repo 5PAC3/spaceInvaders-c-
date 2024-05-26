@@ -1,6 +1,5 @@
 #pragma once
 #include "immediate2d.h"
-#include <thread>
 #include <chrono>
 #include <mutex>
 

@@ -4,12 +4,14 @@
 
 #define IMM2D_IMPLEMENTATION   
 #include "immediate2d.h"
+
 //include delle classi 
 #include "Gioco.h"
 #include "Player.h"
 #include "Alieno.h"
 
 #include <thread>
+#include <chrono>
 using namespace std;
 
 void run() {
@@ -23,6 +25,7 @@ void run() {
 
 	while (true)
 	{
+		auto now = std::chrono::system_clock::now();
 		gioco.Draw();
 		p.Draw();
 
@@ -48,8 +51,7 @@ void run() {
 
 		if (S.GetX() < 240)
 		{
-			thread S1(&Alieno::Move, &S);
-			S1.detach();
+			S.Move();
 		}
 
 		Wait(20);
