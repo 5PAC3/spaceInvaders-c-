@@ -14,7 +14,17 @@
 #include <chrono>
 using namespace std;
 
+uint64_t getMillis() {
+	using namespace std::chrono;
+	return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+}
+
+
+
 void run() {
+
+
+
 	int clock = 0;
 	int firstRowClock = clock;
 	int projectileClock = clock;
@@ -25,7 +35,7 @@ void run() {
 	Alieno M(30, 43, 'M');
 	Alieno L(30, 55, 'L');
 
-
+	uint64_t last = 0;
 	while (true)
 	{
 		auto now = std::chrono::system_clock::now();
@@ -45,38 +55,41 @@ void run() {
 		}
 		if (key == ' ')
 		{
-<<<<<<< HEAD
-			if (clock - projectileClock > 50)
+			if (clock - projectileClock > 10)
 			{
 				thread T(&Player::Shoot, &p);
 				T.detach();
 				projectileClock = clock;
 			}
-=======
-			thread T(&Player::Shoot, &p);
-			T.detach();
-			//p.Shoot();
->>>>>>> 4bb2c16 (commit per capire com funziona sourcetree (nessuna modifica utile))
 		}
 	
 		//S.Draw(30, 30, White);
 		M.Draw(30, 43, White);
 		L.Draw(30, 55, White);
 
-<<<<<<< HEAD
-		if (S.GetX() < 240)
+
+		/*if (S.GetX() < 240)
 		{
 			if (clock - firstRowClock == 10)
 			{
 				S.Move();
 				firstRowClock = clock;
 			}
-		}
-=======
-		S.Move();
->>>>>>> 4bb2c16 (commit per capire com funziona sourcetree (nessuna modifica utile))
+		}*/
 
+		uint64_t ora = getMillis();
+		uint64_t delta = ora - last;
+		last = ora;
+		DrawString(0, 0, to_string(delta).c_str(), "Arial", 15, White);
+
+
+		S.Move();
+
+
+	
 		Wait(20);
+
+		
 		Clear();
 		clock++;
 	}

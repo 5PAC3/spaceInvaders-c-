@@ -102,17 +102,14 @@ void Alieno::Draw(int x, int y, Color colore)
 }
 
 void Alieno::Move() 
-<<<<<<< HEAD
 {	
-	Draw(x++, y, colore);
-=======
-{
+	//Draw(x++, y, colore);
+
 	if (x < 240)
 	{
 		Draw(x++, y, colore);
-		Wait(150);
+		//Wait(150);
 	}
->>>>>>> 4bb2c16 (commit per capire com funziona sourcetree (nessuna modifica utile))
 }
 
 int Alieno::GetX()

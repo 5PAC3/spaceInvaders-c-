@@ -26,13 +26,11 @@ void ProjectileP::Start(int x, int y)
 		//std::lock_guard<std::mutex> lock(mtx);
 
 		Draw(x, y--, colore);
-<<<<<<< HEAD
-		std::this_thread::sleep_for(std::chrono::milliseconds(20)); 
-=======
+
+
 		Wait(20);
 		Draw(x, b--, Black);
 		Wait(2);
->>>>>>> 4bb2c16 (commit per capire com funziona sourcetree (nessuna modifica utile))
 	}
 	
 }
