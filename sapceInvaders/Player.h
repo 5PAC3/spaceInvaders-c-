@@ -8,6 +8,7 @@ private:
 	Color colore;
 	int x ,y; //inizio dal centro 189, 130
 	ProjectileP projectile;
+	int velocita;
 public:
 	Player();
 	void Draw();

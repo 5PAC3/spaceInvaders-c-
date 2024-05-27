@@ -45,18 +45,25 @@ void run() {
 		}
 		if (key == ' ')
 		{
+<<<<<<< HEAD
 			if (clock - projectileClock > 50)
 			{
 				thread T(&Player::Shoot, &p);
 				T.detach();
 				projectileClock = clock;
 			}
+=======
+			thread T(&Player::Shoot, &p);
+			T.detach();
+			//p.Shoot();
+>>>>>>> 4bb2c16 (commit per capire com funziona sourcetree (nessuna modifica utile))
 		}
 	
 		//S.Draw(30, 30, White);
 		M.Draw(30, 43, White);
 		L.Draw(30, 55, White);
 
+<<<<<<< HEAD
 		if (S.GetX() < 240)
 		{
 			if (clock - firstRowClock == 10)
@@ -65,6 +72,9 @@ void run() {
 				firstRowClock = clock;
 			}
 		}
+=======
+		S.Move();
+>>>>>>> 4bb2c16 (commit per capire com funziona sourcetree (nessuna modifica utile))
 
 		Wait(20);
 		Clear();

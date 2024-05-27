@@ -5,6 +5,7 @@ Player::Player()
 	colore = Lime;
 	x = 130;
 	y = 188;
+	velocita = 6;
 }
 
 void Player::Draw()
@@ -24,7 +25,7 @@ void Player::MoveR()
 {
 	if (x < 252)
 	{
-		x += 2;
+		x += velocita;
 	}
 }
 
@@ -32,7 +33,7 @@ void Player::MoveL()
 {
 	if (x > 7)
 	{
-		x -= 2;
+		x -= velocita;
 	}
 }
 
