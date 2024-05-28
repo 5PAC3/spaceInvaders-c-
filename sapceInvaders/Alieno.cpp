@@ -101,18 +101,17 @@ void Alieno::Draw(int x, int y, Color colore)
 	}
 }
 
-void Alieno::Move(Ctimer deltaT)
+void Alieno::Move(Ctimer* deltaT)
 {	
 	Draw(x, y, colore);
 	if (x < 240)
 	{
-		if (deltaT.GetDuration() >= 1000)
+		if (deltaT->GetDuration() > 1000)
 		{
 			x++;
-			deltaT.Start();
+			deltaT->Start();
 		}
 	}
-	
 }
 
 int Alieno::GetX()

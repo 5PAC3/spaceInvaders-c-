@@ -15,7 +15,7 @@ public:
 	Alieno(int x, int y, char type);
 
 	void Draw(int x, int y, Color colore);
-	void Move(Ctimer deltaT);
+	void Move(Ctimer* deltaT);
 	int GetX();
 	int GetY();
 };

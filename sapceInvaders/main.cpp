@@ -30,7 +30,7 @@ void run() {
 
 	Gioco gioco;
 	Player p;
-	Alieno S(30, 30, 'S');
+	Alieno S(30, 30, 'S', timer);
 	Alieno M(30, 43, 'M');
 	Alieno L(30, 55, 'L');
 
@@ -88,8 +88,6 @@ void run() {
 
 	
 		Wait(20);
-
-		
 		Clear();
 		clock++;
 	}
