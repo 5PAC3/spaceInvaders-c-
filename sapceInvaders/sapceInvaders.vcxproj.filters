@@ -30,6 +30,9 @@
     <ClInclude Include="Alieno.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="Ctimer.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -45,6 +48,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="Alieno.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Ctimer.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

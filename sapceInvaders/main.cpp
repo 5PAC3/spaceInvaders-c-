@@ -19,11 +19,10 @@ uint64_t getMillis() {
 	return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
 
-
-
 void run() {
 
-
+	Ctimer timer;
+	timer.Start();
 
 	int clock = 0;
 	int firstRowClock = clock;
@@ -55,7 +54,7 @@ void run() {
 		}
 		if (key == ' ')
 		{
-			if (clock - projectileClock > 10)
+			if (clock - projectileClock > 40)
 			{
 				thread T(&Player::Shoot, &p);
 				T.detach();
@@ -77,13 +76,14 @@ void run() {
 			}
 		}*/
 
+		//fps counter
 		uint64_t ora = getMillis();
 		uint64_t delta = ora - last;
 		last = ora;
 		DrawString(0, 0, to_string(delta).c_str(), "Arial", 15, White);
 
-
-		S.Move();
+	
+		S.Move(&timer);
 
 
 	

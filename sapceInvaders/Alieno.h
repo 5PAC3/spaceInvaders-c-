@@ -1,6 +1,6 @@
 #pragma once
 #include "immediate2d.h"
-#include <chrono>
+#include "Ctimer.h"
 
 class Alieno
 {
@@ -15,7 +15,7 @@ public:
 	Alieno(int x, int y, char type);
 
 	void Draw(int x, int y, Color colore);
-	void Move();
+	void Move(Ctimer deltaT);
 	int GetX();
 	int GetY();
 };
