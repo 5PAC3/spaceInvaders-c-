@@ -20,9 +20,20 @@ uint64_t getMillis() {
 }
 
 void run() {
+	Ctimer timerRow1;
+	Ctimer timerRow2;
+	Ctimer timerRow3;
 
-	Ctimer timer;
-	timer.Start();
+	//staert di tutti i timer
+	timerRow1.Start();
+	timerRow2.Start();
+	timerRow3.Start();
+
+	//rows
+	int row1 = 1;
+	int row2 = 2;
+	int row3 = 3;
+	int row4 = 4;
 
 	int clock = 0;
 	int firstRowClock = clock;
@@ -30,9 +41,15 @@ void run() {
 
 	Gioco gioco;
 	Player p;
-	Alieno S(30, 30, 'S', timer);
-	Alieno M(30, 43, 'M');
-	Alieno L(30, 55, 'L');
+
+	//row 1
+	Alieno SRow1(30, 10, 'S');
+	Alieno MRow1(30, 23, 'M');
+	Alieno LRow1(30, 35, 'L');
+	//row 2
+	//Alieno SRow2(35, 10, 'S');
+	//Alieno MRow2(35, 23, 'M');
+	//Alieno LRow2(35, 35, 'L');
 
 	uint64_t last = 0;
 	while (true)
@@ -59,32 +76,29 @@ void run() {
 				thread T(&Player::Shoot, &p);
 				T.detach();
 				projectileClock = clock;
+
 			}
 		}
 	
-		//S.Draw(30, 30, White);
-		M.Draw(30, 43, White);
-		L.Draw(30, 55, White);
-
-
-		/*if (S.GetX() < 240)
-		{
-			if (clock - firstRowClock == 10)
-			{
-				S.Move();
-				firstRowClock = clock;
-			}
-		}*/
-
 		//fps counter
 		uint64_t ora = getMillis();
 		uint64_t delta = ora - last;
 		last = ora;
 		DrawString(0, 0, to_string(delta).c_str(), "Arial", 15, White);
+		DrawString(30, 0, "ms ongi ciclo", "Arial", 8, White);
+		
+		//mostra comandi
+		DrawString(0, 190, " A per muoverti a sinistra    D per muoverti a destra", "Arial", 8, White);
+		DrawString(0, 205, " Spazio per sparare", "Arial", 8, White);
 
-	
-		S.Move(&timer);
+		//movimento alieni
+		SRow1.Move( row1);
+		MRow1.Move( row1);
+		LRow1.Move( row1);
 
+		//SRow2.Move(&timerRow2, row1);
+		//MRow2.Move(&timerRow2, row1);
+		//LRow2.Move(&timerRow2, row1);
 
 	
 		Wait(20);
@@ -93,6 +107,3 @@ void run() {
 	}
 	
 }
-
-// destra \u001b[C     77
-// sinistra \u001b[D     75

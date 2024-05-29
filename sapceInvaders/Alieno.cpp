@@ -7,7 +7,7 @@ Alieno::Alieno()
 	x = 0;
 	y = 0;
 	pt = 0;
-	velocita = 1;
+	spostamento = true;
 }
 
 Alieno::Alieno(int x, int y, char type)
@@ -26,6 +26,10 @@ Alieno::Alieno(int x, int y, char type)
 	if (type == 'L') {
 		pt = 10;
 	}
+}
+
+Alieno::~Alieno()	
+{
 }
 
 void Alieno::Draw(int x, int y, Color colore)
@@ -101,15 +105,59 @@ void Alieno::Draw(int x, int y, Color colore)
 	}
 }
 
-void Alieno::Move(Ctimer* deltaT)
+void Alieno::Move(int row)
 {	
+	int max1 = 160;
+	int min1 = 30;
+
+	int max2 = 200;
+	int min2 = 30;
+
+	int max3 = 240;
+	int min3 = 30;
+
+	int max4 = 240;
+	int min4 = 30;
 	Draw(x, y, colore);
-	if (x < 240)
+	//colonna 1
+	colonna(row, max1, min1);
+}
+
+int Alieno::getSpostamento()
+{
+	if (spostamento)
 	{
-		if (deltaT->GetDuration() > 1000)
+		return VELOCITA;
+	}
+	if (!spostamento)
+	{
+		return VELOCITA * -1;
+	}
+}
+
+void Alieno::colonna(int row, int max, int min)
+{
+	if (row == 1)
+	{
+		if (x < max || x > min)
 		{
-			x++;
-			deltaT->Start();
+			if (deltaT.GetDuration() > 0.5)
+			{
+				x += getSpostamento();
+				deltaT.Start();
+			}
+			if (x == max)
+			{
+				y += 20;
+				spostamento = false;
+				x += getSpostamento();
+			}
+			if (x == min)
+			{
+				y += 20;
+				spostamento = true;
+				x += getSpostamento();
+			}
 		}
 	}
 }
@@ -123,3 +171,4 @@ int Alieno::GetY()
 {
 	return y;
 }
+
