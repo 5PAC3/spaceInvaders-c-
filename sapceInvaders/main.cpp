@@ -23,11 +23,13 @@ void run() {
 	Ctimer timerRow1;
 	Ctimer timerRow2;
 	Ctimer timerRow3;
+	Ctimer timerRow4;
 
 	//staert di tutti i timer
 	timerRow1.Start();
 	timerRow2.Start();
 	timerRow3.Start();
+	timerRow4.Start();
 
 	//rows
 	int row1 = 1;
@@ -43,15 +45,25 @@ void run() {
 	Player p;
 
 	//row 1
-	Alieno SRow1(30, 10, 'S');
-	Alieno MRow1(30, 23, 'M');
-	Alieno LRow1(30, 35, 'L');
+	Alieno SRow1(30, 30, 'S');
+	Alieno MRow1(30, 50, 'M');
+	Alieno LRow1(30, 70, 'L');
 	//row 2
-	//Alieno SRow2(35, 10, 'S');
-	//Alieno MRow2(35, 23, 'M');
-	//Alieno LRow2(35, 35, 'L');
+	Alieno SRow2(70, 30, 'S');
+	Alieno MRow2(70, 50, 'M');
+	Alieno LRow2(70, 70, 'L');
+	//row 3
+	Alieno SRow3(110, 30, 'S');
+	Alieno MRow3(110, 50, 'M');
+	Alieno LRow3(110, 70, 'L');
+	//row 3
+	Alieno SRow4(150, 30, 'S');
+	Alieno MRow4(150, 50, 'M');
+	Alieno LRow4(150, 70, 'L');
 
 	uint64_t last = 0;
+
+	bool projectile = false;
 	while (true)
 	{
 		auto now = std::chrono::system_clock::now();
@@ -61,15 +73,36 @@ void run() {
 
 		const char key = LastKey();
 
-		if (key == 'd')
+		if (key == 'd' || key == 'D')
 		{
 			p.MoveR();
 		}
-		if (key == 'a')
+		if (key == 'a' || key == 'A')
 		{
 			p.MoveL();
 		}
 		if (key == ' ')
+		{
+			if (!projectile)
+			{
+				if (clock - projectileClock > 40)
+				{
+					projectile = true;
+					p.Shoot();
+					projectileClock = clock;
+
+				}
+			}
+		}
+		if (projectile)
+		{
+			p.moveProjectile();
+			if (!p.getPStatus())
+			{
+				projectile = false;
+			}
+		}
+		/*if (key == ' ')
 		{
 			if (clock - projectileClock > 40)
 			{
@@ -78,29 +111,36 @@ void run() {
 				projectileClock = clock;
 
 			}
-		}
+		}*/
 	
-		//fps counter
+		//ms counter
 		uint64_t ora = getMillis();
 		uint64_t delta = ora - last;
 		last = ora;
 		DrawString(0, 0, to_string(delta).c_str(), "Arial", 15, White);
-		DrawString(30, 0, "ms ongi ciclo", "Arial", 8, White);
+		DrawString(30, 0, "ms ogni ciclo", "Arial", 8, White);
 		
 		//mostra comandi
 		DrawString(0, 190, " A per muoverti a sinistra    D per muoverti a destra", "Arial", 8, White);
-		DrawString(0, 205, " Spazio per sparare", "Arial", 8, White);
+		DrawString(0, 205, " Barra Spaziatrice per sparare", "Arial", 8, White);
 
 		//movimento alieni
-		SRow1.Move( row1);
-		MRow1.Move( row1);
-		LRow1.Move( row1);
+		SRow1.Move(row1);
+		MRow1.Move(row1);
+		LRow1.Move(row1);
 
-		//SRow2.Move(&timerRow2, row1);
-		//MRow2.Move(&timerRow2, row1);
-		//LRow2.Move(&timerRow2, row1);
+		SRow2.Move(row1);
+		MRow2.Move(row1);
+		LRow2.Move(row1);
 
-	
+		SRow3.Move(row1);
+		MRow3.Move(row1);
+		LRow3.Move(row1);
+
+		SRow4.Move(row1);
+		MRow4.Move(row1);
+		LRow4.Move(row1);
+
 		Wait(20);
 		Clear();
 		clock++;

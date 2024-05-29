@@ -14,6 +14,8 @@ void Gioco::Draw()
 	DrawLine(259, 190, 259, 20, 1, colore);
 
 	//170   20-190
+
+
 }
 
 

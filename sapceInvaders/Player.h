@@ -17,5 +17,7 @@ public:
 	void Shoot();
 	int GetX();
 	int GetY();
+	void moveProjectile();
+	bool getPStatus();
 };
 

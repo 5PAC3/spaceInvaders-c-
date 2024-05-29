@@ -9,10 +9,12 @@ class ProjectileP
 private:
 	Color colore;
 	int velocita;
-
+	int x, y;
 public:
+	bool esiste;
 	ProjectileP();
-	void Draw(int x, int y, Color color);
+	void Draw();
 	void Start(int x, int y);
+	void Move();
 };
 

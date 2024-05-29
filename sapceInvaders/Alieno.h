@@ -16,8 +16,7 @@ private:
 public:
 	Alieno();
 	Alieno(int x, int y, char type);
-	~Alieno();
-
+	
 	void Draw(int x, int y, Color colore);
 	void Move( int row);
 	int getSpostamento();

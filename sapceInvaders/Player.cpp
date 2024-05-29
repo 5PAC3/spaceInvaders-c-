@@ -23,7 +23,7 @@ void Player::Draw()
 
 void Player::MoveR()
 {
-	if (x < 252)
+	if (x < 250)
 	{
 		x += velocita;
 	}
@@ -31,7 +31,7 @@ void Player::MoveR()
 
 void Player::MoveL()
 {
-	if (x > 7)
+	if (x > 10)
 	{
 		x -= velocita;
 	}
@@ -50,4 +50,15 @@ int Player::GetX()
 int Player::GetY()
 {
 	return y;
+}
+
+void Player::moveProjectile()
+{
+	projectile.Move();
+	projectile.Draw();
+}
+
+bool Player::getPStatus()
+{
+	return projectile.esiste;
 }

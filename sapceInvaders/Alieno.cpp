@@ -28,10 +28,6 @@ Alieno::Alieno(int x, int y, char type)
 	}
 }
 
-Alieno::~Alieno()	
-{
-}
-
 void Alieno::Draw(int x, int y, Color colore)
 {
 	if (type == 'S')
@@ -107,17 +103,9 @@ void Alieno::Draw(int x, int y, Color colore)
 
 void Alieno::Move(int row)
 {	
-	int max1 = 160;
-	int min1 = 30;
+	int max1 = 240;
+	int min1 = 10;
 
-	int max2 = 200;
-	int min2 = 30;
-
-	int max3 = 240;
-	int min3 = 30;
-
-	int max4 = 240;
-	int min4 = 30;
 	Draw(x, y, colore);
 	//colonna 1
 	colonna(row, max1, min1);
@@ -141,20 +129,20 @@ void Alieno::colonna(int row, int max, int min)
 	{
 		if (x < max || x > min)
 		{
-			if (deltaT.GetDuration() > 0.5)
+			if (deltaT.GetDuration() > 0.1)
 			{
 				x += getSpostamento();
 				deltaT.Start();
 			}
 			if (x == max)
 			{
-				y += 20;
+				y += 10;
 				spostamento = false;
 				x += getSpostamento();
 			}
 			if (x == min)
 			{
-				y += 20;
+				y += 10;
 				spostamento = true;
 				x += getSpostamento();
 			}

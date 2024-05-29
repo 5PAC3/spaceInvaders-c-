@@ -4,33 +4,43 @@ ProjectileP::ProjectileP()
 {
 	colore = White;
 	velocita = 10;
+	esiste = true;
 }
 
-void ProjectileP::Draw(int x, int y, Color color)
+void ProjectileP::Draw()
 {
-	DrawPixel(x, y, color);
-	DrawPixel(x - 1, y - 1, color);
-	DrawPixel(x , y - 2, color);
-	DrawPixel(x +1 , y - 3, color);
-	DrawPixel(x, y - 4, color);
+	DrawPixel(x, y, colore);
+	DrawPixel(x - 1, y - 1, colore);
+	DrawPixel(x, y - 2, colore);
+	DrawPixel(x + 1, y - 3, colore);
+	DrawPixel(x, y - 4, colore);
 }
 
 void ProjectileP::Start(int x, int y)
 {
-	int a = x;
-	int b = y;
-
-	for (int i=0 ; i < 155; i++)
+	//for (int i=0 ; i < 155; i++)
+	//{
+	if (esiste)
 	{
-
-		//std::lock_guard<std::mutex> lock(mtx);
-
-		Draw(x, y--, colore);
-
-
-		Wait(20);
-		Draw(x, b--, Black);
-		Wait(2);
+	this->x = x;
+	this->y = y;
+		Draw();
 	}
-	
+	//Wait(20);
+	//}
+}
+
+void ProjectileP::Move()
+{
+	if (esiste)
+	{
+		if (y > 25)
+		{
+			y--;
+		}
+		if (y == 25)
+		{
+			esiste = false;
+		}
+	}
 }
