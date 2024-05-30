@@ -19,5 +19,6 @@ public:
 	int GetY();
 	void moveProjectile();
 	bool getPStatus();
+	void projectileReset();
 };
 

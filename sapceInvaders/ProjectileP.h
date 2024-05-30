@@ -16,5 +16,8 @@ public:
 	void Draw();
 	void Start(int x, int y);
 	void Move();
+	void reset();
+	int getX();
+	int getY();
 };
 

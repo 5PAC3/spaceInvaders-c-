@@ -2,6 +2,8 @@
 
 ProjectileP::ProjectileP()
 {
+	x = 0;
+	y = 0;
 	colore = White;
 	velocita = 10;
 	esiste = true;
@@ -18,16 +20,12 @@ void ProjectileP::Draw()
 
 void ProjectileP::Start(int x, int y)
 {
-	//for (int i=0 ; i < 155; i++)
-	//{
 	if (esiste)
 	{
-	this->x = x;
-	this->y = y;
+		this->x = x;
+		this->y = y;
 		Draw();
 	}
-	//Wait(20);
-	//}
 }
 
 void ProjectileP::Move()
@@ -43,4 +41,23 @@ void ProjectileP::Move()
 			esiste = false;
 		}
 	}
+}
+
+void ProjectileP::reset()
+{
+	x = 0;
+	y = 0;
+	colore = White;
+	velocita = 10;
+	esiste = true;
+}
+
+int ProjectileP::getX()
+{
+	return x;
+}
+
+int ProjectileP::getY()
+{
+	return y;
 }

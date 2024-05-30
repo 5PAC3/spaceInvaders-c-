@@ -62,3 +62,8 @@ bool Player::getPStatus()
 {
 	return projectile.esiste;
 }
+
+void Player::projectileReset()
+{
+	projectile.reset();
+}

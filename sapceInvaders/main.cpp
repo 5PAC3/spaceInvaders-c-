@@ -81,6 +81,7 @@ void run() {
 		{
 			p.MoveL();
 		}
+		//spara proiettile 
 		if (key == ' ')
 		{
 			if (!projectile)
@@ -100,18 +101,9 @@ void run() {
 			if (!p.getPStatus())
 			{
 				projectile = false;
+				p.projectileReset();
 			}
 		}
-		/*if (key == ' ')
-		{
-			if (clock - projectileClock > 40)
-			{
-				thread T(&Player::Shoot, &p);
-				T.detach();
-				projectileClock = clock;
-
-			}
-		}*/
 	
 		//ms counter
 		uint64_t ora = getMillis();
@@ -140,6 +132,16 @@ void run() {
 		SRow4.Move(row1);
 		MRow4.Move(row1);
 		LRow4.Move(row1);
+
+		//test hitbox
+		if () 
+		{
+			int x1;
+			x1 = SRow1.GetHX1();
+		}
+		//fare la hitbox o prendere la x e y del proiettile e poi creare una funzione controllo(variabili alieno, variabili proiettile) e dentro il controllo in modo da evitare ridondanza
+		/*DrawPixel(x1, y1, LightMagenta);
+		DrawPixel(x2, y2, LightMagenta);*/
 
 		Wait(20);
 		Clear();

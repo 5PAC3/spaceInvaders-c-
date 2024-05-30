@@ -8,6 +8,10 @@ Alieno::Alieno()
 	y = 0;
 	pt = 0;
 	spostamento = true;
+	hx1 = x;
+	hy1 = y + 4;
+	hx2 = x + 8;
+	hy2 = y - 3;
 }
 
 Alieno::Alieno(int x, int y, char type)
@@ -160,3 +164,22 @@ int Alieno::GetY()
 	return y;
 }
 
+int Alieno::GetHX1()
+{
+	return hx1;
+}
+
+int Alieno::GetHY1()
+{
+	return hy1;
+}
+
+int Alieno::GetHX2()
+{
+	return hx2;
+}
+
+int Alieno::GetHY2()
+{
+	return hy2;
+}
