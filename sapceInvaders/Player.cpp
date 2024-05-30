@@ -67,3 +67,18 @@ void Player::projectileReset()
 {
 	projectile.reset();
 }
+
+int Player::getProjectileX()
+{
+	return projectile.getX();
+}
+
+int Player::getProjectileY()
+{
+	return projectile.getY();
+}
+
+void Player::pEreaser()
+{
+	projectile.pEreaser();
+}

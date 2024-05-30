@@ -61,3 +61,9 @@ int ProjectileP::getY()
 {
 	return y;
 }
+
+void ProjectileP::pEreaser()
+{
+	
+	y = 25;
+}

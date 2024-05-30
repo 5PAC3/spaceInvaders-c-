@@ -20,5 +20,8 @@ public:
 	void moveProjectile();
 	bool getPStatus();
 	void projectileReset();
+	int getProjectileX();
+	int getProjectileY();
+	void pEreaser();
 };
 

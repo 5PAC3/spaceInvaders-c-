@@ -19,5 +19,6 @@ public:
 	void reset();
 	int getX();
 	int getY();
+	void pEreaser();
 };
 

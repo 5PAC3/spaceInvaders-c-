@@ -19,6 +19,17 @@ uint64_t getMillis() {
 	return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
 
+bool compara(int x1, int y1, int x2, int y2, int xP, int yP) {
+	if (x1 <= xP && x2 >= xP && y1 <= yP && y2 >= yP)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void run() {
 	Ctimer timerRow1;
 	Ctimer timerRow2;
@@ -134,18 +145,29 @@ void run() {
 		LRow4.Move(row1);
 
 		//test hitbox
-		if () 
+		/*if (compara(SRow1.GetHX1(), SRow1.GetHY1(), SRow1.GetHX2(), SRow1.GetHY2(), p.getProjectileX(), p.getProjectileY()))
 		{
-			int x1;
-			x1 = SRow1.GetHX1();
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}*/
+
+		//x1 <= xP && x2 >= xP && y1 <= yP && y2 >= yP
+
+		DrawPixel(10, 60, Blue);
+		DrawPixel(100, 50, Blue);
+		//compara(10, 60, 100, 50, p.getProjectileX(), p.getProjectileY())
+
+		if (SRow1.GetHX1() <= p.getProjectileX() && SRow1.GetHY1(), SRow1.GetHX2(), SRow1.GetHY2(), p.getProjectileX(), p.getProjectileY())
+		{
+			
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
 		}
-		//fare la hitbox o prendere la x e y del proiettile e poi creare una funzione controllo(variabili alieno, variabili proiettile) e dentro il controllo in modo da evitare ridondanza
-		/*DrawPixel(x1, y1, LightMagenta);
-		DrawPixel(x2, y2, LightMagenta);*/
 
 		Wait(20);
 		Clear();
 		clock++;
 	}
-	
 }

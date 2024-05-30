@@ -133,7 +133,7 @@ void Alieno::colonna(int row, int max, int min)
 	{
 		if (x < max || x > min)
 		{
-			if (deltaT.GetDuration() > 0.1)
+			if (deltaT.GetDuration() > 10)
 			{
 				x += getSpostamento();
 				deltaT.Start();
