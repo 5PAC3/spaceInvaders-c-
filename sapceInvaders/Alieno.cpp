@@ -8,10 +8,8 @@ Alieno::Alieno()
 	y = 0;
 	pt = 0;
 	spostamento = true;
-	hx1 = x;
-	hy1 = y + 4;
+	hx1 = x - 5;
 	hx2 = x + 8;
-	hy2 = y - 3;
 }
 
 Alieno::Alieno(int x, int y, char type)
@@ -133,7 +131,7 @@ void Alieno::colonna(int row, int max, int min)
 	{
 		if (x < max || x > min)
 		{
-			if (deltaT.GetDuration() > 10)
+			if (deltaT.GetDuration() > 50)
 			{
 				x += getSpostamento();
 				deltaT.Start();
@@ -182,4 +180,17 @@ int Alieno::GetHX2()
 int Alieno::GetHY2()
 {
 	return hy2;
+}
+
+bool Alieno::colpito(int xP, int yP)
+{
+	if (yP <= y && (xP <= x+8 && xP >= x-8))
+	{
+		return true;
+		//distruggi l'oggetto
+	}
+	else
+	{
+		return false;
+	}
 }

@@ -3,7 +3,7 @@
 ProjectileP::ProjectileP()
 {
 	x = 0;
-	y = 0;
+	y = 200;
 	colore = White;
 	velocita = 10;
 	esiste = true;

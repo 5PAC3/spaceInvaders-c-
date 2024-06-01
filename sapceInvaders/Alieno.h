@@ -34,4 +34,6 @@ public:
 
 	int GetHX2();
 	int GetHY2();
+
+	bool colpito(int xP, int yP);
 };

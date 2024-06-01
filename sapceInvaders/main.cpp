@@ -153,19 +153,32 @@ void run() {
 		}*/
 
 		//x1 <= xP && x2 >= xP && y1 <= yP && y2 >= yP
-
-		DrawPixel(10, 60, Blue);
-		DrawPixel(100, 50, Blue);
+		// 
 		//compara(10, 60, 100, 50, p.getProjectileX(), p.getProjectileY())
 
-		if (SRow1.GetHX1() <= p.getProjectileX() && SRow1.GetHY1(), SRow1.GetHX2(), SRow1.GetHY2(), p.getProjectileX(), p.getProjectileY())
+		/*if (SRow1.GetHX1() <= p.getProjectileX() && SRow1.GetHY1(), SRow1.GetHX2(), SRow1.GetHY2(), p.getProjectileX(), p.getProjectileY())
 		{
 			
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
-		}
+		}*/
 
+		DrawString(0, 105, to_string(p.getProjectileX()).c_str(), "Arial", 7, White);
+		DrawString(0, 90, to_string(p.getProjectileY()).c_str(), "Arial", 7, White);
+
+		DrawString(20, 105, to_string(SRow1.GetX()).c_str(), "Arial", 7, LightGreen);
+		DrawString(20, 90, to_string(SRow1.GetY()).c_str(), "Arial", 7, LightGreen);
+
+		if (p.getProjectileY() <= SRow1.GetY() && (p.getProjectileX() <= SRow1.GetX()+8 && p.getProjectileX() >= SRow1.GetX()-8))
+		{
+			DrawString(100, 100, "0", "Arial", 15, LightGreen);
+
+		}
+		if (SRow1.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			DrawString(100, 120, "xxx", "Arial", 15, LightBlue);
+		}
 		Wait(20);
 		Clear();
 		clock++;
