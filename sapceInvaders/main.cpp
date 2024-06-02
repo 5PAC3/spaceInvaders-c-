@@ -87,6 +87,9 @@ void run() {
 	uint64_t last = 0;
 
 	bool projectile = false;
+	bool lost = false;
+	int punti = 0;
+
 	while (true)
 	{
 		auto now = std::chrono::system_clock::now();
@@ -139,22 +142,29 @@ void run() {
 		DrawString(0, 190, " A per muoverti a sinistra    D per muoverti a destra", "Arial", 8, White);
 		DrawString(0, 205, " Barra Spaziatrice per sparare", "Arial", 8, White);
 
-		//movimento alieni
-		SRow1.Move(row1);
-		MRow1.Move(row1);
-		LRow1.Move(row1);
+		//points
+		DrawString(170, 0, "Punti :", "Arial", 8, White);
+		DrawString(205, 0, to_string(punti).c_str(), "Arial", 10, White);
 
-		SRow2.Move(row1);
-		MRow2.Move(row1);
-		LRow2.Move(row1);
+		if (!lost)
+		{
+			//movimento alieni
+			SRow1.Move(row1);
+			MRow1.Move(row1);
+			LRow1.Move(row1);
 
-		SRow3.Move(row1);
-		MRow3.Move(row1);
-		LRow3.Move(row1);
+			SRow2.Move(row1);
+			MRow2.Move(row1);
+			LRow2.Move(row1);
 
-		SRow4.Move(row1);
-		MRow4.Move(row1);
-		LRow4.Move(row1);
+			SRow3.Move(row1);
+			MRow3.Move(row1);
+			LRow3.Move(row1);
+
+			SRow4.Move(row1);
+			MRow4.Move(row1);
+			LRow4.Move(row1);
+		}
 
 		//hitboxes
 		//Row 1
@@ -163,18 +173,21 @@ void run() {
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += SRow1.getPoints();
 		}
 		if (MRow1.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += MRow1.getPoints();
 		}
 		if (LRow1.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += LRow1.getPoints();
 		}
 
 		//Row 2
@@ -183,18 +196,21 @@ void run() {
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += SRow2.getPoints();
 		}
 		if (MRow2.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += MRow2.getPoints();
 		}
 		if (LRow2.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += LRow2.getPoints();
 		}
 
 		//Row 3
@@ -203,18 +219,21 @@ void run() {
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += SRow3.getPoints();
 		}
 		if (MRow3.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += MRow3.getPoints();
 		}
 		if (LRow3.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += LRow3.getPoints();
 		}
 
 		//Row 4
@@ -223,75 +242,91 @@ void run() {
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += SRow4.getPoints();
 		}
 		if (MRow4.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += MRow4.getPoints();
 		}
 		if (LRow4.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
 			p.projectileReset();
 			projectile = false;
 			p.pEreaser();
+			punti += LRow4.getPoints();
 		}
 
 		if (((!SRow1.getEsiste() && !MRow1.getEsiste() && !LRow1.getEsiste()) && (!SRow2.getEsiste() && !MRow2.getEsiste() && !LRow2.getEsiste()) && (!SRow3.getEsiste() && !MRow3.getEsiste() && !LRow3.getEsiste()) && (!SRow4.getEsiste() && !MRow4.getEsiste() && !LRow4.getEsiste()) ))
 		{
 			showWin();
 		}
-		//Row1 win
+
+		//Row1 lose
 		if (SRow1.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (MRow1.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (LRow1.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
-		//Row2 win
+		//Row2 lose
 		if (SRow2.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (MRow2.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (LRow2.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
-		//Row3 win
+		//Row3 lose
 		if (SRow3.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (MRow3.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (LRow3.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
-		//Row4 win
+		//Row4 lose
 		if (SRow4.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (MRow4.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 		if (LRow4.GetY() >= 188)
 		{
 			showLose();
+			lost = true;
 		}
 
 		Wait(20);

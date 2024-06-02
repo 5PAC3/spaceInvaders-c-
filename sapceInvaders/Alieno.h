@@ -28,4 +28,5 @@ public:
 	bool colpito(int xP, int yP);
 	bool getEsiste();
 	void Delete();
+	int getPoints();
 };

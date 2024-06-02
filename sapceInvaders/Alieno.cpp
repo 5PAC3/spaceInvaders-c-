@@ -146,7 +146,7 @@ void Alieno::colonna(int row, int max, int min)
 	{
 		if (x < max || x > min)
 		{
-			if (deltaT.GetDuration() > 0.5)
+			if (deltaT.GetDuration() > 0.1)
 			{
 				x += getSpostamento();
 				deltaT.Start();
@@ -200,5 +200,9 @@ bool Alieno::getEsiste()
 void Alieno::Delete()
 {
 	esiste = false;
-	type = 'X';
+}
+
+int Alieno::getPoints()
+{
+	return pt;
 }
