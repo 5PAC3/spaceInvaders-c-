@@ -34,7 +34,7 @@ void ProjectileP::Move()
 	{
 		if (y > 25)
 		{
-			y--;
+			y --;
 		}
 		if (y == 25)
 		{

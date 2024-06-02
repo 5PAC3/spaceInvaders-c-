@@ -13,10 +13,7 @@ private:
 	int pt;
 	bool spostamento; //true = avanti
 	Ctimer deltaT;
-	int hx1;
-	int hy1;
-	int hx2;
-	int hy2;
+	bool esiste;
 	 
 public:
 	Alieno();
@@ -28,12 +25,7 @@ public:
 	void colonna( int row, int max, int min);
 	int GetX();
 	int GetY();
-
-	int GetHX1();
-	int GetHY1();
-
-	int GetHX2();
-	int GetHY2();
-
 	bool colpito(int xP, int yP);
+	bool getEsiste();
+	void Delete();
 };

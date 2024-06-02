@@ -8,8 +8,7 @@ Alieno::Alieno()
 	y = 0;
 	pt = 0;
 	spostamento = true;
-	hx1 = x - 5;
-	hx2 = x + 8;
+	esiste = true;
 }
 
 Alieno::Alieno(int x, int y, char type)
@@ -75,7 +74,7 @@ void Alieno::Draw(int x, int y, Color colore)
 		DrawPixel(x + 9, y + 2, colore);
 		DrawPixel(x + 9, y + 3, colore);
 	}
-	if(type == 'L')
+	if (type == 'L')
 	{
 		//corpo
 		DrawRectangle(x, y, 9, 1, colore, colore);
@@ -100,6 +99,22 @@ void Alieno::Draw(int x, int y, Color colore)
 		//bocca
 		DrawPixel(x + 4, y + 3, colore);
 		DrawPixel(x + 5, y + 3, colore);
+	}
+	if (type == 'X')
+	{
+		DrawPixel(x + 1, y, colore);
+		DrawPixel(x, y + 1, colore);
+
+		DrawPixel(x + 6, y, colore);
+		DrawPixel(x + 7, y + 1, colore);
+
+		DrawPixel(x + 1, y - 4, colore);
+		DrawPixel(x, y - 5, colore);
+
+		DrawPixel(x + 6, y - 4, colore);
+		DrawPixel(x + 7, y - 5, colore);
+		Wait(200);
+		type = ' ';
 	}
 }
 
@@ -131,7 +146,7 @@ void Alieno::colonna(int row, int max, int min)
 	{
 		if (x < max || x > min)
 		{
-			if (deltaT.GetDuration() > 50)
+			if (deltaT.GetDuration() > 0.5)
 			{
 				x += getSpostamento();
 				deltaT.Start();
@@ -162,35 +177,28 @@ int Alieno::GetY()
 	return y;
 }
 
-int Alieno::GetHX1()
-{
-	return hx1;
-}
-
-int Alieno::GetHY1()
-{
-	return hy1;
-}
-
-int Alieno::GetHX2()
-{
-	return hx2;
-}
-
-int Alieno::GetHY2()
-{
-	return hy2;
-}
-
 bool Alieno::colpito(int xP, int yP)
 {
-	if (yP <= y && (xP <= x+8 && xP >= x-8))
+	if (esiste && (yP <= y + 2 && (xP <= x+8 && xP >= x-2)))
 	{
+		esiste = false;
+		type = 'X';
+
 		return true;
-		//distruggi l'oggetto
 	}
 	else
 	{
 		return false;
 	}
+}
+
+bool Alieno::getEsiste()
+{
+	return esiste;
+}
+
+void Alieno::Delete()
+{
+	esiste = false;
+	type = 'X';
 }

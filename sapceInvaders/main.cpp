@@ -14,20 +14,32 @@
 #include <chrono>
 using namespace std;
 
+Gioco gioco;
+Player p;
+
 uint64_t getMillis() {
 	using namespace std::chrono;
 	return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
 
-bool compara(int x1, int y1, int x2, int y2, int xP, int yP) {
-	if (x1 <= xP && x2 >= xP && y1 <= yP && y2 >= yP)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+void showWin() {
+	int popUpWidth = 90;
+	int popUpHeight = 30;
+	int popUpY = 90;
+	DrawRectangle((IMM2D_WIDTH / 2) - (popUpWidth / 2), popUpY, popUpWidth, popUpHeight, Black, Lime);
+	DrawString((popUpWidth)-3, popUpY + 3, "You Won", "Arial", 15, White);
+}
+
+void showLose() {
+	int popUpWidth = 90;
+	int popUpHeight = 30;
+	int popUpY = 90;
+	DrawRectangle((IMM2D_WIDTH / 2) - (popUpWidth / 2), popUpY, popUpWidth, popUpHeight, Black, Lime);
+	DrawString((popUpWidth)-4, popUpY + 3, "You Lose", "Arial", 15, White);
+}
+
+void DeleteEveryAlien() {
+
 }
 
 void run() {
@@ -144,41 +156,144 @@ void run() {
 		MRow4.Move(row1);
 		LRow4.Move(row1);
 
-		//test hitbox
-		/*if (compara(SRow1.GetHX1(), SRow1.GetHY1(), SRow1.GetHX2(), SRow1.GetHY2(), p.getProjectileX(), p.getProjectileY()))
-		{
-			p.projectileReset();
-			projectile = false;
-			p.pEreaser();
-		}*/
-
-		//x1 <= xP && x2 >= xP && y1 <= yP && y2 >= yP
-		// 
-		//compara(10, 60, 100, 50, p.getProjectileX(), p.getProjectileY())
-
-		/*if (SRow1.GetHX1() <= p.getProjectileX() && SRow1.GetHY1(), SRow1.GetHX2(), SRow1.GetHY2(), p.getProjectileX(), p.getProjectileY())
-		{
-			
-			p.projectileReset();
-			projectile = false;
-			p.pEreaser();
-		}*/
-
-		DrawString(0, 105, to_string(p.getProjectileX()).c_str(), "Arial", 7, White);
-		DrawString(0, 90, to_string(p.getProjectileY()).c_str(), "Arial", 7, White);
-
-		DrawString(20, 105, to_string(SRow1.GetX()).c_str(), "Arial", 7, LightGreen);
-		DrawString(20, 90, to_string(SRow1.GetY()).c_str(), "Arial", 7, LightGreen);
-
-		if (p.getProjectileY() <= SRow1.GetY() && (p.getProjectileX() <= SRow1.GetX()+8 && p.getProjectileX() >= SRow1.GetX()-8))
-		{
-			DrawString(100, 100, "0", "Arial", 15, LightGreen);
-
-		}
+		//hitboxes
+		//Row 1
 		if (SRow1.colpito(p.getProjectileX(), p.getProjectileY()))
 		{
-			DrawString(100, 120, "xxx", "Arial", 15, LightBlue);
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
 		}
+		if (MRow1.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (LRow1.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+
+		//Row 2
+		if (SRow2.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (MRow2.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (LRow2.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+
+		//Row 3
+		if (SRow3.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (MRow3.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (LRow3.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+
+		//Row 4
+		if (SRow4.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (MRow4.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+		if (LRow4.colpito(p.getProjectileX(), p.getProjectileY()))
+		{
+			p.projectileReset();
+			projectile = false;
+			p.pEreaser();
+		}
+
+		if (((!SRow1.getEsiste() && !MRow1.getEsiste() && !LRow1.getEsiste()) && (!SRow2.getEsiste() && !MRow2.getEsiste() && !LRow2.getEsiste()) && (!SRow3.getEsiste() && !MRow3.getEsiste() && !LRow3.getEsiste()) && (!SRow4.getEsiste() && !MRow4.getEsiste() && !LRow4.getEsiste()) ))
+		{
+			showWin();
+		}
+		//Row1 win
+		if (SRow1.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (MRow1.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (LRow1.GetY() >= 188)
+		{
+			showLose();
+		}
+		//Row2 win
+		if (SRow2.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (MRow2.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (LRow2.GetY() >= 188)
+		{
+			showLose();
+		}
+		//Row3 win
+		if (SRow3.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (MRow3.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (LRow3.GetY() >= 188)
+		{
+			showLose();
+		}
+		//Row4 win
+		if (SRow4.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (MRow4.GetY() >= 188)
+		{
+			showLose();
+		}
+		if (LRow4.GetY() >= 188)
+		{
+			showLose();
+		}
+
 		Wait(20);
 		Clear();
 		clock++;
